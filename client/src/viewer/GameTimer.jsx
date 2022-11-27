@@ -1,4 +1,5 @@
 import {Component} from "react";
+import {serverName} from "../App";
 
 
 class GameTimer extends Component {
@@ -9,7 +10,8 @@ class GameTimer extends Component {
     }
 
     getTeamInfo() {
-        return fetch("http://localhost:8080/status")
+        console.log("http://" + serverName + ":8080/status");
+        return fetch("http://" + serverName + ":8080/status")
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({

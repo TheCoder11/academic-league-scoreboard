@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {Card, ListGroup} from "react-bootstrap";
+import {serverName} from "../App";
 
 class Team extends Component {
     constructor(props) {
@@ -16,21 +17,21 @@ class Team extends Component {
     }
 
     getTeamInfo() {
-        return fetch("http://localhost:8080/status")
+        return fetch("http://" + serverName + ":8080/status")
             .then((response) => response.json())
             .then((responseJson) => {
                 switch (this.state.team) {
                     case 1:
                         this.setState({
                             name: responseJson.team1.name,
-                            points: responseJson.team1.scores,
+                            points: responseJson.team1.score,
                             actions: responseJson.team1.actions
                         });
                         break;
                     case 2:
                         this.setState({
                             name: responseJson.team2.name,
-                            points: responseJson.team2.scores,
+                            points: responseJson.team2.score,
                             actions: responseJson.team2.actions
                         });
                         break;
